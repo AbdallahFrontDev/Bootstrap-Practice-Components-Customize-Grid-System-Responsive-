@@ -1,0 +1,94 @@
+:root {
+  --accent: #27a9f5;
+  --theme-color:black;
+}
+body{
+  padding-top: 56px;
+}
+/* 113.35 */
+
+[data-bs-theme="dark"]{
+  --accent: #5cc8ff;
+  --theme-color:white;
+
+}
+#hero #carouselExampleCaptions,#hero #carouselExampleCaptions img{
+  height: calc(100vh - 113.35px);
+}
+#hero #carouselExampleCaptions img{
+  object-fit: cover;
+  filter: brightness(.3);
+
+}
+.w-fit{
+  width: fit-content;
+}
+section:not(#hero){
+  padding: 50px 0;
+}
+.bg-accent-subtle {
+  background-color: var(--accent);
+}
+.custom-nav {
+  --bs-navbar-color: rgba(var(--bs-emphasis-color-rgb), 0.65);
+  --bs-navbar-hover-color: var(--accent);
+  --bs-navbar-active-color: var(--accent);
+  --bs-navbar-brand-color: var(--accent);
+  --bs-navbar-brand-hover-color: var(--accent);
+} 
+
+#hero .carousel-indicators [data-bs-target]{
+  width: 15px; 
+  height: 3px;
+}
+#hero .carousel-indicators .active{
+  width: 30px;
+}
+#hero .carousel-control-prev-icon{
+  background-image:url('../assets/prevControl.png')
+}
+#hero .carousel-control-next-icon {
+    transform: rotate(180deg);
+    background-image: url(../assets/prevControl.png);
+}
+
+.nav-pills .nav-link{
+  color: var(--theme-color);
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  background-color: var(--accent);
+  font-weight: 700;
+  color: #Fff
+  ;
+}
+
+
+
+ #events #carouselExample.desktop img{
+  height: 200px ;
+  object-fit: cover;
+
+} 
+ #events #carouselExample2.mobile {
+  height: 400px;
+ }
+ 
+  #events #carouselExample2.mobile  img{
+    height: 400px;
+    object-fit: cover;
+
+  }
+  #events .carousel-control-next-icon ,   #events .carousel-control-prev-icon{
+    background-color: var(--accent);
+    opacity: 1 !important;
+    border-radius: 5px;
+    border: 5px solid #000;
+  }
+.form-control:focus{
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.accordion {
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem var(--accent);
+    --bs-accordion-active-color: #fff;
+    --bs-accordion-active-bg: var(--accent);
+}
