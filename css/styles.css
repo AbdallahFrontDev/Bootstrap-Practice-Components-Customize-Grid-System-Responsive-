@@ -51,7 +51,9 @@ section:not(#hero){
     transform: rotate(180deg);
     background-image: url(../assets/prevControl.png);
 }
-
+#features img{
+  height: 300px;
+}
 .nav-pills .nav-link{
   color: var(--theme-color);
 }
