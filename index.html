@@ -46,8 +46,7 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 custom-nav">
           <li class="nav-item  d-flex justify-content-center p-4 my-3">
                 <button
-                  class="btn btn-link nav-link p-0 "
-                  id="theme-toggle"
+                  class="btn btn-link nav-link p-0 theme-toggle"
                   aria-label="Toggle theme"
                 >
                   <i class="bi bi-moon-stars fs-5"></i>
@@ -146,8 +145,7 @@
               </li>
               <li class="nav-item ms-3">
                 <button
-                  class="btn btn-link nav-link p-0"
-                  id="theme-toggle"
+                  class="btn btn-link nav-link p-0 theme-toggle"
                   aria-label="Toggle theme"
                 >
                   <i class="bi bi-moon-stars"></i>
@@ -771,32 +769,46 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      const themeToggle = document.getElementById("theme-toggle");
-      const icon = themeToggle.querySelector("i");
-      console.log(localStorage.getItem("theme"));
-      document.documentElement.setAttribute(
-        "data-bs-theme",
-        localStorage.getItem("theme") || "light"
-      );
-
-      // Check for saved user preference, if any
-      const currentTheme = localStorage.getItem("theme") || "light";
-      if (currentTheme === "dark") {
-        document.documentElement.setAttribute("data-bs-theme", "dark");
-        icon.classList.replace("bi-moon-stars", "bi-sun");
+      // Get all theme toggle buttons and their icons
+      const themeToggles = document.querySelectorAll(".theme-toggle");
+      
+      // Function to update all theme icons
+      function updateThemeIcons(isDark) {
+        themeToggles.forEach(toggle => {
+          const icon = toggle.querySelector("i");
+          if (isDark) {
+            icon.classList.remove("bi-moon-stars");
+            icon.classList.add("bi-sun");
+          } else {
+            icon.classList.remove("bi-sun");
+            icon.classList.add("bi-moon-stars");
+          }
+        });
       }
 
+      // Check for saved user preference, if any
+      const savedTheme = localStorage.getItem("theme") || "light";
+      const isDarkMode = savedTheme === "dark";
+      
+      // Apply the saved theme
+      document.documentElement.setAttribute("data-bs-theme", savedTheme);
+      updateThemeIcons(isDarkMode);
+
       // Toggle theme on button click
-      themeToggle.addEventListener("click", () => {
-        const isDark =
-          document.documentElement.getAttribute("data-bs-theme") === "dark";
-        document.documentElement.setAttribute(
-          "data-bs-theme",
-          isDark ? "light" : "dark"
-        );
-        icon.classList.toggle("bi-moon-stars", isDark);
-        icon.classList.toggle("bi-sun", !isDark);
-        localStorage.setItem("theme", isDark ? "light" : "dark");
+      themeToggles.forEach(toggle => {
+        toggle.addEventListener("click", () => {
+          const currentTheme = document.documentElement.getAttribute("data-bs-theme");
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          
+          // Update the theme
+          document.documentElement.setAttribute("data-bs-theme", newTheme);
+          
+          // Update all icons
+          updateThemeIcons(newTheme === "dark");
+          
+          // Save preference
+          localStorage.setItem("theme", newTheme);
+        });
       });
     </script>
   </body>
